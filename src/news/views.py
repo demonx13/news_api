@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from django.shortcuts import get_object_or_404
 from .services import data_from_page
 from django.shortcuts import redirect
-
+import json
 
 def ListNewsRedirect(request, pk):
     return redirect(f'http://127.0.0.1:8000/v1/news/categories/{pk}/news/1')
@@ -24,9 +24,11 @@ class ListCategories(APIView):
         Return a list of all users.
         """
         data = {}
-        categories = [{category.id: category.themes} for category in Category.objects.all()]
+        categories = [{'id': category.id, "name": category.name} for category in Category.objects.all()]
+
         if categories:
-            data.update({'code': 0, 'list': categories})
+            data.update({"code": 0, "list": categories})
+
         return Response(data, status=200)
 
 

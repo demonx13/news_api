@@ -42,7 +42,8 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'drf_yasg',
-    'src.news'
+    'src.news',
+    'src.orange',
 ]
 
 MIDDLEWARE = [
@@ -103,6 +104,17 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+
+#return JSON only
+# REST_FRAMEWORK.update({
+#     'DEFAULT_RENDERER_CLASSES': (
+#         'rest_framework.renderers.JSONRenderer',
+#     ),
+#     'DEFAULT_PARSER_CLASSES': (
+#         'rest_framework.parsers.JSONParser',
+#     )
+# })
 
 
 # Internationalization

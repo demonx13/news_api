@@ -9,13 +9,13 @@ class Command(BaseCommand):
     """
     def handle(self, *args, **options):
         # self.create_category()
-        self.create_news()
+        # self.create_news()
         self.stdout.write("Success")
 
     def create_category(self):
         for i in range(20):
             category = Category.objects.create(
-                themes=f"test_category_{i}",
+                name=f"test_category_{i}",
             )
 
     def create_news(self):

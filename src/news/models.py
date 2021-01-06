@@ -5,10 +5,10 @@ from django.contrib.auth.models import User
 class Category(models.Model):
     """Category of news
     """
-    themes = models.CharField("Themes", max_length=50,)
+    name = models.CharField("Name", max_length=50,)
 
     def __str__(self):
-        return self.themes
+        return self.name
 
     class Meta:
         verbose_name = 'Category'
@@ -32,3 +32,4 @@ class News(models.Model):
 
     def __str__(self):
         return f"{self.id} / {self.title}"
+
