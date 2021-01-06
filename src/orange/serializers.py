@@ -15,4 +15,13 @@ class NewsListSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model = News
-        fields = ('id', 'title', 'date', 'shortDescription')
+        fields = ('id', 'title', 'date', 'short_description')
+
+
+class NewsSerializer(serializers.ModelSerializer):
+    """
+    """
+    class Meta:
+        model = News
+        fields = ('date', 'full_description', 'id', 'short_description', 'title')
+

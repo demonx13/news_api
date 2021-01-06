@@ -15,12 +15,22 @@ def data_from_page(data, page=1, article_limit=10):
     return data[(page-1)*article_limit:page*article_limit]
 
 
-def page_validator(value):
+def value_validator(value):
     """check value for int type
     """
     try:
-        page = int(value)
-        page = 1 if page < 1 else page
+        val = int(value)
+        val = 1 if val < 1 else val
     except Exception as ex:
-        page = 1
-    return page
+        val = 1
+    return val
+
+
+def value_validator_news(value):
+    """check value for int type
+    """
+    try:
+        val = int(value)
+        return True if val > 0 else False
+    except Exception as ex:
+        return False

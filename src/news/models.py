@@ -21,8 +21,8 @@ class News(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, blank=True, null=True)
     writer = models.ForeignKey(User, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
-    fullDescription = models.TextField("News detail ", max_length=1000)
-    shortDescription = models.TextField('Short description', max_length=200, default="")
+    full_description = models.TextField("Full Description", max_length=1000, default="")
+    short_description = models.TextField('Short description', max_length=200, default="")
     title = models.CharField("News title", max_length=100)
     visible = models.BooleanField("Published", default=True)
 
