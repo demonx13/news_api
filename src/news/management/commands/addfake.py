@@ -8,17 +8,21 @@ class Command(BaseCommand):
     """command to create db elements for test workability
     """
     def handle(self, *args, **options):
-        # self.create_category()
-        # self.create_news()
+        self.create_category()
+        self.create_news()
         self.stdout.write("Success")
 
     def create_category(self):
+        """
+        """
         for i in range(20):
-            category = Category.objects.create(
+            Category.objects.create(
                 name=f"test_category_{i}",
             )
 
     def create_news(self):
+        """
+        """
         user = User.objects.all()[0]
 
         category_list = Category.objects.all()
@@ -30,6 +34,6 @@ class Command(BaseCommand):
                     writer=user,
                     fullDescription=newsdata.get('fullDescription'),
                     shortDescription=newsdata.get('shortDescription'),
-                    title=newsdata.get('title'),
+                    title=f"{newsdata.get('title')} #{i}",
                     visible=True
                 )
