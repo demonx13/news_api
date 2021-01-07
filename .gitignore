@@ -6,7 +6,6 @@ venv
 media/*
 
 
-.env.dev
 
 *.log
 *.pot
