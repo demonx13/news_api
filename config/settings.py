@@ -106,15 +106,15 @@ REST_FRAMEWORK = {
 }
 
 
-#return JSON only
-# REST_FRAMEWORK.update({
-#     'DEFAULT_RENDERER_CLASSES': (
-#         'rest_framework.renderers.JSONRenderer',
-#     ),
-#     'DEFAULT_PARSER_CLASSES': (
-#         'rest_framework.parsers.JSONParser',
-#     )
-# })
+# return JSON only
+REST_FRAMEWORK.update({
+    'DEFAULT_RENDERER_CLASSES': (
+        'rest_framework.renderers.JSONRenderer',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'rest_framework.parsers.JSONParser',
+    )
+})
 
 
 # Internationalization

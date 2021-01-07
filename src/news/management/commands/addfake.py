@@ -15,25 +15,34 @@ class Command(BaseCommand):
     def create_category(self):
         """
         """
-        for i in range(20):
-            Category.objects.create(
-                name=f"test_category_{i}",
-            )
+        ctg = Category.objects.all()
+        if ctg and len(ctg) > 10:
+            print('Categories already exist')
+        else:
+            for i in range(20):
+                Category.objects.create(
+                    name=f"test_category_{i+1}",
+                )
 
     def create_news(self):
         """
         """
-        user = User.objects.all()[0]
-
-        category_list = Category.objects.all()
-        for category in category_list:
-            print(category)
-            for i in range(20):
-                News.objects.create(
-                    category=category,
-                    writer=user,
-                    fullDescription=newsdata.get('fullDescription'),
-                    shortDescription=newsdata.get('shortDescription'),
-                    title=f"{newsdata.get('title')} #{i}",
-                    visible=True
-                )
+        nws = News.objects.all()
+        if nws and len(nws) > 50:
+            print("News already exist")
+        else:
+            counter = 0
+            user = User.objects.all()[0]
+            category_list = Category.objects.all()
+            for category in category_list:
+                # print(category)
+                for i in range(20):
+                    counter += 1
+                    News.objects.create(
+                        category=category,
+                        writer=user,
+                        full_description=newsdata.get('full_description'),
+                        short_description=newsdata.get('short_description'),
+                        title=f"{newsdata.get('title')} #{counter}",
+                        visible=True
+                    )

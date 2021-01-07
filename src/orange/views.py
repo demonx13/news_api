@@ -20,7 +20,7 @@ class NewsByCategory(APIView):
         return list of news by category id, pagination 20
         """
         try:
-            queryset = News.objects.filter(category_id=pk)
+            queryset = News.objects.filter(category_id=pk, visible=True)
             page = value_validator(self.request.query_params.get('page', 1))
             queryset = data_from_page(queryset, page)
             serializer = NewsListSerializer(queryset, many=True)
@@ -65,7 +65,7 @@ class NewsDetail(APIView):
     def get(self, request):
         """
         """
-        news_id = self.request.query_params.get('id', 1)
+        news_id = self.request.query_params.get('id', None)
         if value_validator_news(news_id):
             news_id = int(news_id)
         else:
@@ -73,11 +73,15 @@ class NewsDetail(APIView):
             return Response(data=data, status=400)
 
         queryset = News.objects.filter(id=news_id)
-        try:
-            serializer = NewsSerializer(queryset, many=True)
-            data = {'code': 0, 'news': serializer.data}
-            status = 200
-        except Exception as err:
-            data = {'code': 1, 'message': str(err)}
-            status = 400
+        if queryset:
+            try:
+                serializer = NewsSerializer(queryset, many=True)
+                data = {'code': 0, 'news': serializer.data}
+                status = 200
+            except Exception as err:
+                data = {'code': 1, 'message': str(err)}
+                status = 400
+        else:
+            data = {'code': 1, 'message': 'not found'}
+            status = 404
         return Response(data=data, status=status)

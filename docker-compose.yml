@@ -2,6 +2,14 @@ version: '3.8'
 
 
 services:
+  news-db:
+    image: postgres:12.5
+    volumes:
+      - news_postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - ./.env.dev
+    ports:
+      - 5432:5432
   news_back:
     build: ./
     command: python manage.py runserver 0.0.0.0:8000
@@ -11,14 +19,6 @@ services:
       - 8000:8000
     env_file:
       - ./.env.dev
-  news-db:
-    image: postgres:12.5
-    volumes:
-      - news_postgres_data:/var/lib/postgresql/data/
-    env_file:
-      - ./.env.dev
-    ports:
-      - 5432:5432
 
 volumes:
   news_postgres_data:

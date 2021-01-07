@@ -1,5 +1,6 @@
 from rest_framework import permissions
 
+
 class PublicPermissions(permissions.BasePermission):
     """Public permissions to view articles
     """

@@ -4,7 +4,7 @@ from .models import News, Category
 
 @admin.register(News)
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('id', 'category', 'title')
+    list_display = ('id', 'category', 'title', 'visible')
 
 
 @admin.register(Category)
